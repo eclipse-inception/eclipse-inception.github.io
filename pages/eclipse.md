@@ -1,11 +1,11 @@
 ---
 layout: page-fullwidth
-title: "INCEpTION is moving to Eclipse"
+title: "Moving to the Eclipse Foundation"
 permalink: "/eclipse/"
 ---
 
-INCEpTION is transitioning to the [Eclipse Foundation](https://www.eclipse.org), where it is
-becoming an incubating project under the name **Eclipse INCEpTION™**. Becoming an Eclipse project gives INCEpTION a vendor-neutral
+INCEpTION has joined the [Eclipse Foundation](https://www.eclipse.org) as an incubating project
+under the name **Eclipse INCEpTION™**. Becoming an Eclipse project gives INCEpTION a vendor-neutral
 home with open governance, making it easier for people and organizations beyond the current team to
 contribute and to rely on the project in the long term.
 
@@ -13,12 +13,17 @@ Thank you to everyone who supported the proposal!
 
 ### What happens now?
 
-Step by step, we are moving the code, the website, the release process, and other parts of the
+The initial contribution of the code is complete and the trademark has been transferred to the
+Eclipse Foundation. The intellectual property vetting of the contribution is still pending.
+
+Step by step, we are moving development, the website, the release process, and other parts of the
 project over to the Eclipse Foundation.
 
 Until a part has moved, it stays where it is: downloads, source code, issue tracker, documentation,
 and the [users mailing list](https://groups.google.com/d/forum/inception-users) remain available
 as usual. We will announce changes here and on the mailing lists as they happen.
+
+{% include pre-eclipse-note.html %}
 
 ### Where to find Eclipse INCEpTION
 

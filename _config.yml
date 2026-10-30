@@ -8,7 +8,7 @@
 #                                                 /____/        
 #
 # Title of your website
-title: "INCEpTION"
+title: "Eclipse INCEpTION™"
 
 
 # The slogan describes your website and is used on homepage in <title> and other important places
@@ -21,7 +21,7 @@ description: "Multi-layer text annotation with knowledge-base entity linking and
 
 # This URL is the main adresse. Don't include a slash at the end.
 #
-url: "https://inception-project.github.io"
+url: "https://eclipse-inception.github.io"
 baseurl: ""
 plugins:
     - jekyll-sitemap

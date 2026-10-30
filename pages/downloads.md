@@ -7,7 +7,11 @@ permalink: "/downloads/"
 {% assign stable = site.data.releases | where: "status", "stable" | first %}
 {% assign release_url = "https://github.com/inception-project/inception/releases" %}
 
-## INCEpTION {{ stable.version }}
+{% include pre-eclipse-note.html %}
+
+<a href="https://projects.eclipse.org/projects/technology.inception" target="_blank" title="Eclipse INCEpTION is in the incubation phase"><img style="float: right;" width="180" src="{{ site.url }}/images/logos/eclipse-incubation.svg" alt="Eclipse Incubation"></a>
+
+## {% include release-name.html version=stable.version %}
 
 [Release notes]({{ release_url }}/tag/inception-{{ stable.version }})
 

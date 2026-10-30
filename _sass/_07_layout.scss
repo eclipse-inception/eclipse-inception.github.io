@@ -84,7 +84,7 @@ body.video cite { color: #fff; }
     font-size: $font-size-h1;
     font-family: $header-font-family;
     color: #fff;
-    height: 96px;
+    min-height: 96px;
 	line-height: 96px;
 	background: $primary-color;
 }
@@ -96,6 +96,14 @@ body.video cite { color: #fff; }
 }
 #masthead-logo-text #logo img {
     margin-top: 0px;
+}
+// Long titles wrap, so the height must follow the text.
+#masthead-logo-text .masthead-title {
+    display: flex;
+    align-items: center;
+    min-height: 96px;
+    padding: 10px 0;
+    line-height: 1.2;
 }
 .backstretch {
     background: $primary-color;
@@ -123,7 +131,7 @@ body.video cite { color: #fff; }
         font-size: rem-calc(36);
     }
     #masthead-logo-text {
-        height: 96px;
+        min-height: 96px;
 		line-height: 96px;
         padding: 0px 0;
         font-size: rem-calc(36);
@@ -156,7 +164,7 @@ body.video cite { color: #fff; }
     }
     #masthead-logo-text {
         padding: 0px 0;
-        height: 96px;
+        min-height: 96px;
 		line-height: 96px;
     }
 }
@@ -184,7 +192,7 @@ body.video cite { color: #fff; }
     }
     #masthead-logo-text {
         padding: 0px 0;
-        height: 96px;
+        min-height: 96px;
 		line-height: 96px;
     }
 }
@@ -212,7 +220,7 @@ body.video cite { color: #fff; }
     }
     #masthead-logo-text {
         padding: 0px 0;
-        height: 96px;
+        min-height: 96px;
 		line-height: 96px;
     }
 }
@@ -319,6 +327,19 @@ body.video cite { color: #fff; }
     padding-top: 30px;
     padding-bottom: 10px;
 }
+    #subfooter-eclipse {
+        margin-bottom: 20px;
+
+        img {
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: rem-calc(14);
+            color: $subfooter-color;
+        }
+    }
     #subfooter-left ul.inline-list {
         float: left;
     }
