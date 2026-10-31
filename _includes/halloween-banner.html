@@ -1,0 +1,21 @@
+{% comment %}
+Temporary Halloween animation. GitHub Pages is static, so it expires in two ways:
+Liquid leaves it out of any build after the date, and the browser check stops
+pages built before the date from showing it.
+To remove: delete this file and assets/halloween/, and the include in
+_layouts/frontpage.html.
+{% endcomment %}
+{% assign halloween_expires = '2026-11-03T00:00:00Z' | date: '%s' | plus: 0 %}
+{% assign halloween_built = site.time | date: '%s' | plus: 0 %}
+{% if halloween_built < halloween_expires %}
+<div id="halloween-banner"></div>
+<script>
+if (Date.now() < {{ halloween_expires }}000) {
+  var f = document.createElement('iframe');
+  f.src = '/assets/halloween/banner.html';
+  f.title = 'Eclipse INCEpTION Halloween animation, with lightning and flickering light';
+  f.style.cssText = 'display:block;width:100%;max-width:960px;aspect-ratio:957/209;border:0;margin:1rem auto 0';
+  document.getElementById('halloween-banner').appendChild(f);
+}
+</script>
+{% endif %}
