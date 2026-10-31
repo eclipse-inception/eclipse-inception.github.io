@@ -35,6 +35,8 @@ format: post
             </p>
             {% endif %}
 
+            {% if page.third_party %}{% include third-party-tool-note.html %}{% endif %}
+
             <span itemprop="articleSection">
             {{ content }}
             </span>

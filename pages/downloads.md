@@ -5,7 +5,7 @@ permalink: "/downloads/"
 ---
 
 {% assign stable = site.data.releases | where: "status", "stable" | first %}
-{% assign release_url = "https://github.com/inception-project/inception/releases" %}
+{% assign release_url = "https://github.com/eclipse-inception/inception/releases" %}
 
 {% include pre-eclipse-note.html %}
 
