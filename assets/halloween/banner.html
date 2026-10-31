@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eclipse INCEpTION</title>
+<style>
+  :root { color-scheme: dark; }
+  html, body { overflow: clip; background: transparent; }
+  body {
+    margin: 0; color: #d9daf0;
+    font: 16px/1.4 system-ui, sans-serif;
+    transition: background-color 1s;
+  }
+  main { width: 100%; }
+
+  .stage { container-type: inline-size; }
+  .banner {
+    --depth: 1500;
+    position: relative; aspect-ratio: 957 / 209;
+    perspective: calc(var(--depth) * 100cqw / 957);
+    perspective-origin: 48.26% 50.4%;
+    cursor: grab; touch-action: pan-y; user-select: none;
+  }
+  .banner.dragging { cursor: grabbing; }
+  .bg, .letters { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .bg { transition: filter 1s; }
+  body.night .bg { filter: brightness(.55) saturate(.8); }
+
+  /* The board turns around the p's stem. */
+  .word { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 48.26% 50%; }
+  .letters { overflow: visible; }
+
+  .eclipse-word { visibility: hidden; filter: drop-shadow(0 0 3px #ff7a12) drop-shadow(0 0 9px #c43c00); }
+  .tm { visibility: hidden; }
+  body.night .eclipse-word, body.night .tm { visibility: visible; }
+
+  .pumpkin {
+    position: absolute; display: block; overflow: visible; visibility: hidden;
+    left: 12.096%; top: 26.469%; width: 10.449%; height: 47.540%;
+    transform: translateZ(1px) rotate(-8deg);
+  }
+  body.pumpkin-on .pumpkin { visibility: visible; }
+  .candle { animation: candle 1.7s infinite; filter: drop-shadow(0 0 3px #ffb020); }
+  @keyframes candle {
+    0%, 100% { opacity: 1; } 18% { opacity: .78; } 31% { opacity: .96; } 47% { opacity: .68; }
+    63% { opacity: 1; } 79% { opacity: .82; }
+  }
+
+  .moon {
+    position: absolute; left: 0; top: 0; display: block; overflow: visible; visibility: hidden;
+    width: 6.532%; height: 35.407%;
+  }
+
+  /* Fog stays inside the banner. */
+  .fog { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0; transition: opacity 3s; }
+  body.night .fog { opacity: 1; }
+
+  .logo-spot {
+    position: absolute; right: 1.2%; bottom: 3%; width: 16.5%; padding: 1.2% 1.8%;
+    box-sizing: content-box; pointer-events: none;
+    opacity: 0; filter: blur(8px); transform: translateY(6px);
+    background: radial-gradient(closest-side, rgba(214,219,238,.94) 48%, rgba(196,202,226,.6) 70%, rgba(170,178,208,.18) 88%, rgba(170,178,208,0));
+  }
+  .logo-spot svg { display: block; width: 100%; height: auto; }
+  .logo-spot.up { opacity: 1; filter: none; transform: none; transition: opacity 6s ease-in, filter 7s ease-out, transform 7s ease-out; }
+
+  /* Out of the way at the very bottom of the page. */
+  .panel { position: fixed; left: .4rem; bottom: .4rem; z-index: 5; font-size: .8rem; }
+  .panel label, .panel p { display: none; }
+  #throw { padding: .1rem .45rem; opacity: .7; }
+  #throw:disabled { visibility: hidden; }
+  .controls { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: end; }
+  button {
+    font: inherit; color: inherit; background: #2c2f80; border: 1px solid #5a5db0;
+    border-radius: 6px; padding: .45rem .9rem; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: #3a3e9c; }
+  button:disabled { opacity: .5; cursor: default; }
+  label { display: grid; gap: .25rem; font-size: .85rem; }
+  label output { color: #9a9cd0; }
+  input[type=range] { width: 11rem; accent-color: #8a8de0; }
+  p { margin: 0; color: #9a9cd0; }
+
+  .flash, .blackout, .bolt { position: fixed; inset: 0; pointer-events: none; opacity: 0; }
+  .flash { z-index: 8; background: #e8ecff; }
+  .bolt { z-index: 9; width: 100%; height: 100%; }
+  .bolt path { fill: none; stroke: #fff; stroke-linejoin: bevel; filter: drop-shadow(0 0 6px #b9c6ff) drop-shadow(0 0 18px #7f93ff); }
+  .blackout { z-index: 10; background: #000; }
+
+  @media (prefers-reduced-motion: reduce) { .candle { animation: none; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="stage">
+    <div class="banner" id="banner" role="img" aria-label="Eclipse INCEpTION, with a grinning pumpkin to the left of the name">
+      <svg class="bg" viewBox="14 13 957 209" aria-hidden="true">
+        <defs>
+          <linearGradient id="base" gradientUnits="userSpaceOnUse" x1="14" y1="0" x2="971" y2="0">
+            <stop offset="0" stop-color="#171848"/>
+            <stop offset="0.34" stop-color="#2c2f80"/>
+            <stop offset="0.66" stop-color="#2c2f80"/>
+            <stop offset="1" stop-color="#171848"/>
+          </linearGradient>
+          <radialGradient id="glow" gradientUnits="userSpaceOnUse" cx="490" cy="222" r="235">
+            <stop offset="0" stop-color="#fff" stop-opacity="0.34"/>
+            <stop offset="0.3" stop-color="#fff" stop-opacity="0.27"/>
+            <stop offset="0.6" stop-color="#fff" stop-opacity="0.15"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="14" y="13" width="957" height="209" fill="url(#base)"/>
+        <rect x="14" y="13" width="957" height="209" fill="url(#glow)"/>
+      </svg>
+      <canvas class="fog" id="fogBack" aria-hidden="true"></canvas>
+      <div class="logo-spot" id="logoSpot">
+        <svg viewBox="0 0 468 168.83" role="img" aria-label="Eclipse Incubation"><g> <path fill="#3D3935" d="M140.55,107.79h2.21v29.7h-2.21V107.79z"/> <path fill="#3D3935" d="M149.76,107.79h2.08l20.5,25.84v-25.84h2.12v29.7h-1.66l-20.92-26.39v26.39h-2.12V107.79z"/> <path fill="#3D3935" d="M180.53,122.73v-0.08c0-8.4,6.28-15.36,14.85-15.36c5.3,0,8.49,1.95,11.54,4.75l-1.57,1.61 c-2.59-2.5-5.56-4.37-10.02-4.37c-7.13,0-12.52,5.81-12.52,13.28v0.08c0,7.51,5.47,13.37,12.56,13.37c4.29,0,7.21-1.65,10.23-4.63 l1.49,1.44c-3.14,3.1-6.53,5.18-11.8,5.18C186.81,138.01,180.53,131.26,180.53,122.73z"/> <path fill="#3D3935" d="M211.85,125.15v-17.36h2.21v17.14c0,7,3.78,11.03,10.06,11.03c6.03,0,9.89-3.65,9.89-10.82v-17.36h2.21v17.1 c0,8.53-4.96,13.07-12.18,13.07C216.9,137.97,211.85,133.47,211.85,125.15z"/> <path fill="#3D3935" d="M241.43,107.79h12.26c3.35,0,6.07,0.98,7.72,2.63c1.23,1.23,1.91,2.8,1.91,4.67v0.08 c0,4.03-2.63,6.07-5.05,7.04c3.56,0.93,6.71,2.97,6.71,7.09v0.08c0,4.96-4.24,8.1-10.65,8.1h-12.9V107.79z M261.07,115.31 c0-3.27-2.67-5.47-7.43-5.47h-10.01v11.67h9.8c4.46,0,7.64-2.16,7.64-6.11V115.31z M253.69,123.54h-10.06v11.92h10.78 c5.09,0,8.32-2.33,8.32-6.07v-0.08C262.73,125.66,259.55,123.54,253.69,123.54z"/> <path fill="#3D3935" d="M283.57,107.58h2.12l13.83,29.92h-2.42l-3.78-8.32H275.8l-3.78,8.32h-2.29L283.57,107.58z M292.39,127.19 L284.58,110l-7.85,17.19H292.39z"/> <path fill="#3D3935" d="M311.53,109.83h-10.35v-2.04h22.92v2.04h-10.35v27.67h-2.21V109.83z"/> <path fill="#3D3935" d="M330.93,107.79h2.21v29.7h-2.21V107.79z"/> <path fill="#3D3935" d="M339.67,122.73v-0.08c0-8.1,5.98-15.36,14.98-15.36s14.89,7.17,14.89,15.28v0.08c0,8.1-5.98,15.36-14.98,15.36 S339.67,130.84,339.67,122.73z M367.25,122.73v-0.08c0-7.34-5.35-13.37-12.69-13.37c-7.34,0-12.6,5.94-12.6,13.28v0.08 c0,7.34,5.35,13.37,12.69,13.37S367.25,130.07,367.25,122.73z"/> <path fill="#3D3935" d="M375.61,107.79h2.08l20.5,25.84v-25.84h2.12v29.7h-1.66l-20.92-26.39v26.39h-2.12V107.79z"/> </g> <path fill="#F78D2C" d="M89.03,133.89c0.45-1.45,1.99-2.53,3.84-2.53c0.63,0,1.22,0.14,1.75,0.36c1.17-0.77,2.6-1.24,4.17-1.24h0.01 c0.49-0.98,1.74-1.68,3.22-1.68c0.39,0,0.77,0.05,1.12,0.14c-0.05-1.2,0.14-2.46,0.6-3.77c0.53-1.52,1.29-2.98,2.09-4.43 c-0.19-2.17-0.33-4.1-3.05-4.89c-1.01-0.29-2.07-0.38-3.1-0.51l-0.01,0l0,0c-0.45-0.05-0.89-0.11-1.32-0.2 c-7.47,7.78-18-10.9-18-10.9c23.24-3.61,18.88,8.24,18.88,8.24c-1.69-0.82-2.15-1.86-3.44-3.1c-2.94-2.82-9.94-3.31-9.94-3.31 c8.39,2.15,9.53,6.21,12.84,7.51c0.75,0.17,1.54,0.23,2.31,0.32c1.47,0.16,2.92,0.43,4.15,1.22c1.27,0.82,1.84,1.83,2.13,2.98 c0.92-1.75,1.71-3.53,2.01-5.45c0.38-2.45,0.03-5.29-1.71-7.3c-1.61-1.86-3.78-3.26-5.5-5.04c-1.83-1.9-3.05-4.25-3.1-6.75 c-0.93-2.03-2.44-4.39-3.82-5.3c-6,5.63-13.91-9-13.91-9c18.44-2.57,15.39,6.9,15.39,6.9c-4.43-4.95-9.9-4.51-9.9-4.51 c4.43,1.41,7.92,4.23,9.96,6.17l0.28,0.28c0.83,0.87,1.67,1.79,2.38,2.78c0.72-2.71,2.39-6.52,3.7-8.78c0,0,4.43-7.81,11.88-12.69 c0,0-5.68,0.65-11.8,10.01c0,0-8.13-12.75,18.14-15.11c0,0-1.81,23.16-16.02,18.66c-2.46,3.71-4.09,7.97-3.75,10.96 c0.33,2.92,2.37,4.98,4.63,6.9c0.6-3.08,2.82-5.73,6.08-7.18c2.61-1.04,6.46-2.04,10.05-2.25c0,0-7.03-1.6-12.37,2.05 c0,0,0.09-10.69,19.03-2.93c0,0-13.7,13.88-18.1,5.61c-2.08,1.38-3.41,3.69-3.06,6.07c1.22,1.07,2.36,2.22,3.05,3.65 c0.96,2,1.3,4.33,1.04,6.49c-0.51,4.16-3.11,7.71-4.89,11.48c-0.73,1.54-1.42,3.23-1.43,4.94c0.89-0.25,1.86-0.38,2.87-0.38 c3.81,0,7.02,1.89,8.06,4.49c1.55,0.17,2.76,1.07,2.98,2.22c1.11,0.68,1.99,1.64,2.52,2.76H85.81 C86.58,136.21,87.7,134.38,89.03,133.89"/> <g> <path fill="#3D3935" d="M139.96,49.18h34.08v7.22h-26.01v11.95h23.05v7.22h-23.05v12.35h26.34v7.22h-34.41V49.18z"/> <path fill="#3D3935" d="M179.76,72.3v-0.13c0-13.07,9.79-23.77,23.71-23.77c8.47,0,13.59,2.96,17.99,7.16l-5.19,5.98 c-3.68-3.42-7.62-5.71-12.87-5.71c-8.73,0-15.17,7.22-15.17,16.22v0.13c0,9,6.37,16.29,15.17,16.29c5.65,0,9.26-2.23,13.2-5.91 l5.19,5.25c-4.79,4.99-10.05,8.14-18.65,8.14C189.75,95.94,179.76,85.5,179.76,72.3z"/> <path fill="#3D3935" d="M228.36,49.18h8.08V87.8h24.17v7.36h-32.25V49.18z"/> <path fill="#3D3935" d="M267.57,49.18h8.08v45.97h-8.08V49.18z"/> <path fill="#3D3935" d="M286.03,49.18h18.12c10.77,0,17.47,6.11,17.47,15.37v0.13c0,10.31-8.27,15.7-18.39,15.7h-9.13v14.78h-8.08 V49.18z M303.5,73.09c6.11,0,9.92-3.42,9.92-8.21v-0.13c0-5.39-3.88-8.21-9.92-8.21h-9.39v16.55H303.5z"/> <path fill="#3D3935" d="M324.91,88.45l4.86-5.78c4.4,3.81,8.87,5.98,14.51,5.98c4.99,0,8.14-2.36,8.14-5.78v-0.13 c0-3.28-1.84-5.06-10.38-7.03c-9.79-2.36-15.3-5.25-15.3-13.73v-0.13c0-7.88,6.57-13.33,15.7-13.33c6.7,0,12.02,2.04,16.68,5.78 l-4.33,6.11c-4.14-3.09-8.27-4.73-12.48-4.73c-4.73,0-7.49,2.43-7.49,5.45v0.13c0,3.55,2.1,5.12,10.97,7.22 c9.72,2.36,14.71,5.84,14.71,13.46v0.13c0,8.6-6.76,13.73-16.42,13.73C337.06,95.81,330.43,93.38,324.91,88.45z"/> <path fill="#3D3935" d="M368.06,49.18h34.08v7.22h-26.01v11.95h23.05v7.22h-23.05v12.35h26.33v7.22h-34.41V49.18z"/> </g> <path fill="#F78D2C" d="M71.04,67.35c10.33-16.11,31.02-21.74,48.27-14c-0.38-0.27-0.76-0.53-1.16-0.79 c-17.67-11.33-41.14-6.24-52.43,11.37C54.43,81.54,59.6,105,77.26,116.33c0.4,0.25,0.8,0.49,1.2,0.73 C64.23,104.61,60.71,83.46,71.04,67.35"/></svg>
+      </div>
+      <canvas class="fog" id="fogFront" aria-hidden="true"></canvas>
+      <div class="word" id="word">
+        <svg class="letters" viewBox="14 13 957 209" aria-hidden="true">
+          <g class="eclipse-word" fill="#F78D2C" transform="translate(191.94 -244.81) scale(1.3279)"><path d="M43.54,206.39h18v3.82H47.8v6.31h12.17v3.81H47.8v6.52h13.91v3.82H43.54V206.39z"/><path d="M64.55,218.6v-0.07c0-6.9,5.17-12.56,12.52-12.56c4.47,0,7.18,1.56,9.5,3.78l-2.74,3.16 c-1.94-1.8-4.02-3.02-6.8-3.02c-4.61,0-8.01,3.82-8.01,8.57v0.07c0,4.75,3.36,8.6,8.01,8.6c2.98,0,4.89-1.18,6.97-3.12l2.74,2.77 c-2.53,2.64-5.31,4.3-9.85,4.3C69.83,231.09,64.55,225.57,64.55,218.6z"/><path d="M90.22,206.39h4.27v20.39h12.76v3.88H90.22V206.39z"/><path d="M110.93,206.39h4.27v24.28h-4.27V206.39z"/><path d="M120.67,206.39h9.57c5.69,0,9.23,3.23,9.23,8.12v0.07c0,5.45-4.37,8.29-9.71,8.29h-4.82v7.8h-4.27V206.39z M129.9,219.02c3.23,0,5.24-1.8,5.24-4.34v-0.07c0-2.84-2.05-4.33-5.24-4.33h-4.96v8.74H129.9z"/><path d="M141.21,227.13l2.57-3.05c2.32,2.01,4.68,3.16,7.67,3.16c2.64,0,4.3-1.25,4.3-3.05v-0.07 c0-1.73-0.97-2.67-5.48-3.71c-5.17-1.25-8.08-2.77-8.08-7.25v-0.07c0-4.16,3.47-7.04,8.29-7.04c3.54,0,6.35,1.08,8.81,3.05 l-2.29,3.23c-2.19-1.63-4.37-2.5-6.59-2.5c-2.5,0-3.95,1.28-3.95,2.88v0.07c0,1.87,1.11,2.71,5.79,3.82 c5.13,1.25,7.77,3.09,7.77,7.11v0.07c0,4.54-3.57,7.25-8.67,7.25C147.62,231.02,144.12,229.73,141.21,227.13z"/><path d="M163.99,206.39h18v3.82h-13.73v6.31h12.17v3.81h-12.17v6.52h13.91v3.82h-18.17V206.39z"/></g>
+          <path fill="#fff" d="M 249.76101,152 V 84.755838 h 8.89861 V 152 Z m 24.49412,0 V 84.755838 h 9.12796 l 35.31924,52.795382 V 84.755838 h 8.53166 V 152 h -9.12796 L 282.78679,99.158749 V 152 Z m 115.91132,-23.57674 8.89861,2.24759 q -2.79801,10.96272 -10.09121,16.74224 -7.24732,5.73364 -17.75136,5.73364 -10.87098,0 -17.70549,-4.40344 -6.78863,-4.44931 -10.36642,-12.84336 -3.53193,-8.39405 -3.53193,-18.02657 0,-10.50403 3.99062,-18.301789 4.03648,-7.843623 11.42142,-11.880108 7.4308,-4.082353 16.32941,-4.082353 10.09121,0 16.97158,5.137343 6.88037,5.137344 9.58665,14.448777 l -8.761,2.06411 q -2.33933,-7.339058 -6.78863,-10.687506 -4.44931,-3.348447 -11.19208,-3.348447 -7.75188,0 -12.98096,3.715401 -5.18322,3.7154 -7.2932,9.999472 -2.10998,6.2382 -2.10998,12.88923 0,8.57753 2.47694,14.99921 2.5228,6.37581 7.79775,9.54078 5.27495,3.16497 11.42142,3.16497 7.47667,0 12.65988,-4.3117 5.18321,-4.3117 7.01798,-12.79749 z M 410.21127,152 V 84.755838 h 48.62129 V 92.6912 h -39.72267 v 20.59524 h 37.19987 v 7.8895 h -37.19987 v 22.8887 h 41.28222 V 152 Z m 61.41878,18.66874 v -67.38177 h 7.52254 v 6.32994 q 2.66041,-3.7154 6.00885,-5.55016 3.34845,-1.88064 8.11884,-1.88064 6.23821,0 11.0086,3.21084 4.77039,3.21084 7.20145,9.08209 2.43107,5.82538 2.43107,12.79749 0,7.47667 -2.70628,13.48553 -2.66041,5.96299 -7.79776,9.17383 -5.09147,3.16497 -10.73338,3.16497 -4.12822,0 -7.4308,-1.74303 -3.25671,-1.74303 -5.36669,-4.40344 v 23.71435 z m 7.47667,-42.75004 q 0,9.40317 3.80714,13.89835 3.80714,4.49518 9.21969,4.49518 5.5043,0 9.40318,-4.63279 3.94474,-4.67865 3.94474,-14.44878 0,-9.31143 -3.853,-13.94422 -3.80714,-4.63278 -9.12796,-4.63278 -5.27495,0 -9.35731,4.95387 -4.03648,4.908 -4.03648,14.31117 z M 542.03919,152 V 92.6912 H 519.8844 v -7.935362 h 53.29994 V 92.6912 H 550.93781 V 152 Z m 41.78679,0 V 84.755838 h 8.89861 V 152 Z m 21.87959,-32.75057 q 0,-16.74223 8.99035,-26.191277 8.99035,-9.494913 23.20978,-9.494913 9.31144,0 16.78811,4.449307 7.47667,4.449307 11.37555,12.430533 3.94474,7.93537 3.94474,18.02658 0,10.22882 -4.12822,18.30178 -4.12822,8.07297 -11.69663,12.24707 -7.56841,4.12822 -16.32942,4.12822 -9.49491,0 -16.97158,-4.58692 -7.47667,-4.58691 -11.32968,-12.52227 -3.853,-7.93536 -3.853,-16.78811 z m 9.17382,0.13761 q 0,12.15532 6.51342,19.1733 6.55929,6.97211 16.42115,6.97211 10.04535,0 16.5129,-7.06385 6.51341,-7.06384 6.51341,-20.04481 0,-8.21058 -2.79801,-14.31117 -2.75215,-6.146469 -8.11884,-9.494916 -5.32082,-3.394317 -11.97185,-3.394317 -9.44904,0 -16.28354,6.513418 -6.78864,6.467545 -6.78864,21.650235 z M 681.38963,152 V 84.755838 h 9.12795 l 35.31924,52.795382 V 84.755838 h 8.53166 V 152 h -9.12795 L 689.92129,99.158749 V 152 Z"/>
+          <path class="tm" fill="#fff" d="M738 84H748.5V85.8H744.2V97H742.3V85.8H738ZM751 84H753.5L757.5 93.6L761.5 84H764V97H762.2V87L758.3 97H756.7L752.8 87V97H751Z"/>
+        </svg>
+        <svg class="pumpkin" id="pumpkin" viewBox="14 22 156 155" aria-hidden="true">
+          <defs>
+            <radialGradient id="flame" cx="50%" cy="60%" r="70%">
+              <stop offset="0" stop-color="#fff3a0"/><stop offset=".5" stop-color="#ffc72e"/><stop offset="1" stop-color="#ff7a00"/>
+            </radialGradient>
+            <radialGradient id="rind" cx="50%" cy="42%" r="62%">
+              <stop offset="0" stop-color="#d9620e"/><stop offset=".65" stop-color="#a83f06"/><stop offset="1" stop-color="#4f1a03"/>
+            </radialGradient>
+          </defs>
+          <path fill="#2c3d12" d="M84 60C86 44 76 34 66 26L90 22C100 34 104 48 102 60Z"/>
+          <ellipse cx="92" cy="115" rx="78" ry="62" fill="url(#rind)"/>
+          <g fill="none" stroke="#3f1502" stroke-width="2.6" opacity=".8">
+            <ellipse cx="92" cy="115" rx="56" ry="61"/><ellipse cx="92" cy="115" rx="29" ry="62"/>
+          </g>
+          <path fill="#3f1502" d="M36 76L88 101L84 106L34 84ZM148 76L96 101L100 106L150 84Z"/>
+          <g stroke="#2a0e01" stroke-width="3" stroke-linejoin="round" fill="#1a0800">
+            <path d="M42 88L84 108L48 120Z"/>
+            <path d="M142 88L100 108L136 120Z"/>
+            <path d="M92 110L82 126H102Z"/>
+            <path d="M24 116L44 131L53 121L64 139L75 126L84 143L92 128L100 143L109 126L120 139L131 121L140 131L160 116L150 150L130 161L119 148L107 170L97 153L92 174L87 153L77 170L65 148L54 161L34 150Z"/>
+          </g>
+          <g class="candle" fill="url(#flame)">
+            <path d="M42 88L84 108L48 120Z"/>
+            <path d="M142 88L100 108L136 120Z"/>
+            <path d="M92 110L82 126H102Z"/>
+            <path d="M24 116L44 131L53 121L64 139L75 126L84 143L92 128L100 143L109 126L120 139L131 121L140 131L160 116L150 150L130 161L119 148L107 170L97 153L92 174L87 153L77 170L65 148L54 161L34 150Z"/>
+          </g>
+          <ellipse fill="#1a0800" cx="62" cy="105" rx="3.2" ry="9" transform="rotate(25 62 105)"/>
+          <ellipse fill="#1a0800" cx="122" cy="105" rx="3.2" ry="9" transform="rotate(-25 122 105)"/>
+        </svg>
+      </div>
+      <svg class="moon" id="moon" viewBox="26.21 23.5 113.02 133.8" aria-hidden="true"><path fill="#F78D2C" d="M47.66,62.99c19.6-30.57,58.84-41.24,91.57-26.55c-0.72-0.5-1.45-1.01-2.2-1.49c-33.51-21.49-78.05-11.84-99.47,21.57c-21.43,33.4-11.62,77.91,21.89,99.4c0.75,0.48,1.51,0.93,2.27,1.38C34.73,133.68,28.06,93.56,47.66,62.99"/></svg>
+    </div>
+  </div>
+
+</main>
+<div class="panel">
+  <div class="controls">
+    <button id="throw" type="button" aria-label="Throw again" title="Throw again">&#8635;</button>
+    <label>Impact strength <output id="flickOut"></output>
+      <input id="flick" type="range" min="300" max="4000" step="50" value="1000"></label>
+    <label>Friction <output id="frictionOut"></output>
+      <input id="friction" type="range" min="0.25" max="3" step="0.05" value="1"></label>
+    <label>Perspective depth <output id="depthOut"></output>
+      <input id="depth" type="range" min="400" max="4000" step="50" value="1500"></label>
+  </div>
+
+  <p>Throw again once it has settled, or drag the word and let go to flick it yourself. Contains lightning and flickering light.</p>
+</div>
+<div class="flash" id="flash"></div>
+<svg class="bolt" id="bolt" aria-hidden="true"><path id="boltMain"/><path id="boltFork"/></svg>
+<div class="blackout" id="blackout"></div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const banner = $('banner'), word = $('word'), moon = $('moon'), pumpkin = $('pumpkin'), throwButton = $('throw');
+  // The lightning and the blackout cover the whole page around the banner.
+  const host = (() => {
+    try {
+      return window.parent.document.body ? window.parent : window;
+    } catch (e) {
+      return window;
+    }
+  })();
+  const flash = $('flash'), bolt = $('bolt'), blackout = $('blackout');
+  const boltMain = $('boltMain'), boltFork = $('boltFork');
+  const COVER = 'position:fixed;inset:0;pointer-events:none;opacity:0;z-index:2147483000;';
+  flash.style.cssText = COVER + 'background:#e8ecff';
+  bolt.style.cssText = COVER + 'width:100%;height:100%;z-index:2147483001';
+  blackout.style.cssText = COVER + 'background:#000;z-index:2147483002';
+  for (const path of [boltMain, boltFork]) {
+    path.style.cssText = 'fill:none;stroke:#fff;stroke-linejoin:bevel;filter:drop-shadow(0 0 6px #b9c6ff) drop-shadow(0 0 18px #7f93ff)';
+  }
+  for (const [el, id] of [[flash, 'flash'], [bolt, 'bolt'], [blackout, 'blackout']]) {
+    el.id = 'halloween-' + id;
+    host.document.body.appendChild(el);
+  }
+
+  const LESS_MOTION = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Banner geometry, in the units of the 957 wide viewBox.
+  const UNITS = 957, AXIS_X = 461.86;
+  const HIT_X = 240.7, HIT_Y = 105, MOON_W = 62.5, MOON_H = 74;
+
+  // --- The board ------------------------------------------------------------
+  let angle = 0, speed = 0, dragging = false;
+  const CRAWL = 150, CATCH_RANGE = 50, SPRING = 30, DAMPING = 3.3;
+
+  function stepBoard(dt) {
+    const front = Math.round(angle / 360) * 360;
+    const off = front - angle;
+    if (Math.abs(speed) <= CRAWL && Math.abs(off) < CATCH_RANGE) {
+      speed += (SPRING * off - DAMPING * speed) * dt;
+    } else {
+      const friction = +$('friction').value;
+      const slowed = Math.abs(speed) - (220 + 0.25 * Math.abs(speed)) * friction * dt;
+      speed = Math.sign(speed || 1) * Math.max(slowed, CRAWL);
+    }
+    angle += speed * dt;
+    if (Math.abs(off) < 0.05 && Math.abs(speed) < 0.5) {
+      angle = speed = 0;
+      return false;
+    }
+    return true;
+  }
+
+  // --- The moon -------------------------------------------------------------
+  // 'away', 'inbound' (before the hit) or 'outbound' (after it).
+  let moonState = 'away', moonClock = 0, launchFrom = null, moonRoute = null;
+  const INBOUND = 0.55, OUTBOUND = 2.0, WHIRL = 1000;
+
+  function placeMoon(x, y, z, turn) {
+    const px = banner.clientWidth / UNITS;
+    moon.style.transform =
+      `translate3d(${(x - MOON_W / 2) * px}px,${(y - MOON_H / 2) * px}px,${z * px}px) rotate(${turn}deg)`;
+  }
+
+  const screenLeft = () => -banner.getBoundingClientRect().left / (banner.clientWidth / UNITS);
+
+  // It sets off just outside the window's left edge, close to the viewer, and
+  // reaches the board moving inward: that is what gives the hit its turning force.
+  function launchPoint() {
+    const depth = +$('depth').value;
+    const z = depth * 0.55;
+    const nearScale = depth / (depth - z);
+    const x = AXIS_X + (screenLeft() - MOON_W * nearScale - AXIS_X) / nearScale;
+    return { x, y: HIT_Y + 95, z };
+  }
+
+  // After the hit it glances off, sweeps out to the right, comes round
+  // above the banner and leaves the way it came.
+  function outboundRoute() {
+    return [
+      [HIT_X, HIT_Y, 0], [HIT_X, HIT_Y, 0], [520, 10, 150], [850, 0, 70], [1010, 60, -110],
+      [900, 20, -300], [430, 10, -220], [60, 25, 40], [-260, 40, 120], [-260, 40, 120],
+    ];
+  }
+
+  // Catmull-Rom through the route's points.
+  function along(route, t) {
+    const spans = route.length - 3;
+    const at = Math.min(t, 0.9999) * spans, i = Math.floor(at), f = at - i;
+    const [p0, p1, p2, p3] = route.slice(i, i + 4);
+    return p1.map((_, k) => 0.5 * (2 * p1[k] + (p2[k] - p0[k]) * f
+      + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * f * f
+      + (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * f * f * f));
+  }
+
+  function stepMoon(dt) {
+    moonClock += dt;
+    if (moonState === 'inbound') {
+      const t = Math.min(moonClock / INBOUND, 1), left = 1 - t;
+      placeMoon(HIT_X + (launchFrom.x - HIT_X) * left,
+        HIT_Y + (launchFrom.y - HIT_Y) * left - 280 * t * left,
+        launchFrom.z * left, WHIRL * moonClock);
+      if (t === 1) {
+        // Hitting the left arm pushes it away from the viewer.
+        speed = -$('flick').value;
+        sceneArmed = !isNight;
+        moonRoute = outboundRoute();
+        moonState = 'outbound';
+        moonClock = 0;
+      }
+      return true;
+    }
+    if (moonState === 'outbound') {
+      const t = moonClock / OUTBOUND;
+      const [x, y, z] = along(moonRoute, t);
+      placeMoon(x, y, z, WHIRL * (INBOUND + moonClock));
+      if (t >= 1) {
+        moonState = 'away';
+        moon.style.visibility = 'hidden';
+        return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function launch() {
+    launchFrom = launchPoint();
+    moonState = 'inbound';
+    moonClock = 0;
+    moon.style.visibility = 'visible';
+    placeMoon(launchFrom.x, launchFrom.y, launchFrom.z, 0);
+    run();
+  }
+
+  // --- The clock ------------------------------------------------------------
+  let boardMoving = false, last = null;
+
+  function tick(now) {
+    const dt = Math.min((now - last) / 1000, 0.05);
+    last = now;
+    const moonMoving = stepMoon(dt);
+    if (speed !== 0 || angle !== 0) boardMoving = !dragging && stepBoard(dt);
+    else boardMoving = false;
+    render();
+    if (moonMoving || boardMoving) {
+      requestAnimationFrame(tick);
+    } else {
+      last = null;
+      updateButton();
+      startSceneIfDue();
+    }
+  }
+
+  function run() {
+    updateButton();
+    if (last === null) {
+      last = performance.now();
+      requestAnimationFrame(tick);
+    }
+  }
+
+  function render() { word.style.transform = `rotateY(${angle}deg)`; }
+
+  function updateButton() {
+    throwButton.disabled = sceneRunning || clearing || moonState !== 'away' || speed !== 0 || angle !== 0;
+  }
+
+  let clearing = false;
+  throwButton.addEventListener('click', async () => {
+    clearing = true;
+    updateButton();
+    setNight(false);
+    if (document.body.classList.contains('pumpkin-on')) {
+      // Knock the pumpkin off before the next throw.
+      await pumpkin.animate(
+        [{ transform: 'translateZ(1px) rotate(-8deg)', opacity: 1 },
+         { transform: 'translate(-10%, 170%) translateZ(1px) rotate(-90deg)', opacity: 0 }],
+        { duration: 500, easing: 'ease-in' }).finished;
+      document.body.classList.remove('pumpkin-on');
+    }
+    clearing = false;
+    launch();
+  });
+
+  // --- Flicking by hand -----------------------------------------------------
+  let dragX = 0, dragTime = 0;
+  const DEG_PER_PX = 0.6;
+
+  banner.addEventListener('pointerdown', e => {
+    if (sceneRunning || clearing || moonState !== 'away') return;
+    dragging = true;
+    banner.classList.add('dragging');
+    banner.setPointerCapture(e.pointerId);
+    speed = 0;
+    dragX = e.clientX;
+    dragTime = e.timeStamp;
+  });
+
+  banner.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    const dx = (e.clientX - dragX) * DEG_PER_PX;
+    const dt = (e.timeStamp - dragTime) / 1000;
+    angle += dx;
+    if (dt > 0) speed = 0.7 * speed + 0.3 * (dx / dt);
+    dragX = e.clientX;
+    dragTime = e.timeStamp;
+    render();
+    updateButton();
+  });
+
+  function release(e) {
+    if (!dragging) return;
+    dragging = false;
+    banner.classList.remove('dragging');
+    if (e.timeStamp - dragTime > 100) speed = 0;
+    if (speed === 0 && angle === 0) { updateButton(); startSceneIfDue(); return; }
+    run();
+  }
+  banner.addEventListener('pointerup', release);
+  banner.addEventListener('pointercancel', release);
+
+  // --- Settings -------------------------------------------------------------
+  function showSettings() {
+    $('flickOut').textContent = $('flick').value + ' °/s';
+    $('frictionOut').textContent = '×' + (+$('friction').value).toFixed(2);
+    $('depthOut').textContent = $('depth').value;
+    banner.style.setProperty('--depth', $('depth').value);
+  }
+  for (const id of ['flick', 'friction', 'depth']) $(id).addEventListener('input', showSettings);
+  showSettings();
+
+  // --- Fog ------------------------------------------------------------------
+  // One lumpy puff, drawn once and then only moved, turned and scaled.
+  const puff = (() => {
+    const c = document.createElement('canvas');
+    c.width = c.height = 256;
+    const g = c.getContext('2d');
+    for (let i = 0; i < 26; i++) {
+      const a = Math.random() * 6.283, d = Math.random() * 70;
+      const x = 128 + Math.cos(a) * d, y = 128 + Math.sin(a) * d, r = 28 + Math.random() * 30;
+      const grad = g.createRadialGradient(x, y, 0, x, y, r);
+      grad.addColorStop(0, 'rgba(120,128,165,.17)');
+      grad.addColorStop(1, 'rgba(120,128,165,0)');
+      g.fillStyle = grad;
+      g.fillRect(x - r, y - r, r * 2, r * 2);
+    }
+    return c;
+  })();
+
+  function makeBank(canvas, count, opts) {
+    const puffs = Array.from({ length: count }, () => ({
+      x: Math.random() * 1.3 - 0.15,
+      y: opts.top + Math.random() * (1.05 - opts.top),
+      size: opts.size * (0.6 + Math.random() * 0.8),
+      drift: (0.008 + Math.random() * 0.016) * (Math.random() < 0.5 ? -1 : 1),
+      spin: (Math.random() - 0.5) * 0.55,
+      phase: Math.random() * 6.283,
+      alpha: opts.alpha * (0.5 + Math.random() * 0.5),
+    }));
+    return { canvas, g: canvas.getContext('2d'), puffs, thin: opts.thin };
+  }
+  const banks = [
+    makeBank($('fogBack'), 34, { top: 0.1, size: 0.2, alpha: 0.8 }),
+    makeBank($('fogFront'), 12, { top: 0.55, size: 0.16, alpha: 0.75, thin: true }),
+  ];
+
+  function sizeFog() {
+    for (const b of banks) {
+      b.canvas.width = Math.ceil(banner.clientWidth);
+      b.canvas.height = Math.ceil(banner.clientHeight);
+    }
+  }
+  addEventListener('resize', () => { sizeFog(); drawFog(fogClock); });
+  sizeFog();
+
+  let fogOn = false, fogClock = 0, fogLast = 0, frontFade = 1;
+
+  function drawFog(t) {
+    for (const b of banks) {
+      const { width: w, height: h } = b.canvas;
+      b.g.clearRect(0, 0, w, h);
+      for (const p of b.puffs) {
+        // Slow sideways drift; the rise, swell and roll are what make it wallow.
+        const x = ((p.x + p.drift * t + 1.3 * 1000) % 1.3 - 0.15) * w;
+        const y = (p.y + 0.1 * Math.sin(t * 0.42 + p.phase)) * h;
+        const size = p.size * w * (1 + 0.25 * Math.sin(t * 0.36 + p.phase * 2));
+        b.g.globalAlpha = p.alpha * (b.thin ? frontFade : 1) * (0.75 + 0.25 * Math.sin(t * 0.21 + p.phase));
+        b.g.save();
+        b.g.translate(x, y);
+        b.g.rotate(p.phase + p.spin * t);
+        b.g.drawImage(puff, -size / 2, -size / 2, size, size);
+        b.g.restore();
+      }
+    }
+  }
+
+  function fogFrame(now) {
+    if (!fogOn) return;
+    fogClock += Math.min((now - fogLast) / 1000, 0.05);
+    fogLast = now;
+    drawFog(fogClock);
+    requestAnimationFrame(fogFrame);
+  }
+
+  // --- The scene: lightning, lights out, lights back on ---------------------
+  let isNight = false, sceneArmed = false, sceneRunning = false;
+  const pause = ms => new Promise(done => setTimeout(done, ms));
+
+  function setNight(on) {
+    isNight = on;
+    document.body.classList.toggle('night', on);
+    if (!on) {
+      $('logoSpot').classList.remove('up');
+      fogOn = false;
+      return;
+    }
+    frontFade = LESS_MOTION ? 0.25 : 1;
+    if (LESS_MOTION) {
+      drawFog(fogClock);
+    } else if (!fogOn) {
+      fogOn = true;
+      fogLast = performance.now();
+      requestAnimationFrame(fogFrame);
+    }
+  }
+
+  // A jagged line from (x0,y0) to (x1,y1) by repeatedly displacing midpoints.
+  function jagged(x0, y0, x1, y1, roughness) {
+    let pts = [[x0, y0], [x1, y1]];
+    for (let spread = roughness; spread > 3; spread *= 0.55) {
+      const next = [pts[0]];
+      for (let i = 1; i < pts.length; i++) {
+        const [ax, ay] = pts[i - 1], [bx, by] = pts[i];
+        next.push([(ax + bx) / 2 + (Math.random() - 0.5) * spread, (ay + by) / 2 + (Math.random() - 0.5) * spread * 0.3], pts[i]);
+      }
+      pts = next;
+    }
+    return pts;
+  }
+  const toPath = pts => 'M' + pts.map(p => p.map(n => n.toFixed(1)).join(' ')).join('L');
+
+  function drawBolt() {
+    // It strikes the spot where the pumpkin is about to be.
+    const r = pumpkin.getBoundingClientRect();
+    const frame = host === window ? { left: 0, top: 0 } : window.frameElement.getBoundingClientRect();
+    const tx = frame.left + r.left + r.width / 2, ty = frame.top + r.top + r.height / 2;
+    const innerWidth = host.innerWidth, innerHeight = host.innerHeight;
+    const main = jagged(tx + innerWidth * 0.16, -10, tx, ty, Math.max(innerHeight * 0.32, 60));
+    const from = main[Math.floor(main.length * 0.4)];
+    const fork = jagged(from[0], from[1], from[0] + innerWidth * 0.11, from[1] + innerHeight * 0.3, innerHeight * 0.14);
+    boltMain.setAttribute('d', toPath(main));
+    boltMain.setAttribute('stroke-width', 4);
+    boltFork.setAttribute('d', toPath(fork));
+    boltFork.setAttribute('stroke-width', 2);
+  }
+
+  const play = (el, opacities, ms) => el.animate(
+    opacities.map(opacity => ({ opacity })), { duration: ms, easing: 'linear', fill: 'forwards' }).finished;
+
+  function becomeNight() {
+    document.body.classList.add('pumpkin-on');
+    setNight(true);
+  }
+
+  async function runScene() {
+    sceneRunning = true;
+    updateButton();
+    await pause(350);
+
+    // Two strikes, well under three flashes in any second.
+    drawBolt();
+    play(bolt, [0, 1, 1, .15, 0, 0, 1, 1, .3, 0], 1800);
+    await play(flash, [0, .7, .25, 0, 0, 0, .5, .2, 0, 0], 1800);
+    await pause(400);
+
+    // The lights struggle, then die: slow, shallow dips.
+    await play(blackout, [0, .1, .6, .6, .3, .3, .75, .75, .55, .75, 1], 3000);
+
+    becomeNight();
+    await pause(900);
+
+    await play(blackout, [1, 1, .6, .75, .75, .35, .35, .5, .2, 0], 2400);
+
+    $('logoSpot').classList.add('up');
+    const started = performance.now();
+    while (frontFade > 0.25) {
+      await pause(100);
+      frontFade = Math.max(0.25, 1 - (performance.now() - started) / 8000);
+    }
+    sceneRunning = false;
+    updateButton();
+  }
+
+  function startSceneIfDue() {
+    if (!sceneArmed || dragging || moonState !== 'away' || speed !== 0 || angle !== 0) return;
+    sceneArmed = false;
+    if (LESS_MOTION) {
+      // No lightning and no flicker: it is simply night.
+      becomeNight();
+      $('logoSpot').classList.add('up');
+      return;
+    }
+    runScene();
+  }
+
+  // Throw on load. If the viewer asked for less motion, it is simply already night.
+  // The same goes for a visitor who has already seen it in this session.
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem('halloween-seen') !== null;
+    sessionStorage.setItem('halloween-seen', '1');
+  } catch (e) {
+    // No session storage: it just plays every time.
+  }
+  if (LESS_MOTION || seen) {
+    becomeNight();
+    frontFade = 0.25;
+    $('logoSpot').classList.add('up');
+  } else {
+    setTimeout(launch, 700);
+  }
+</script>
+</body>
+</html>
