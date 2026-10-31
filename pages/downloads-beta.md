@@ -23,9 +23,9 @@ checks on annotated documents. These checks may significantly reduce response ti
 for documents with many annotations! If you get errors like "CAS Doctor found problems for user 
 ...", please contact us, e.g. by opening an issue.
 
-When (not if) you discover bugs or hit problems with these versions, please report them in our [issue tracker](http://github.com/inception-project/inception/issues).
+When (not if) you discover bugs or hit problems with these versions, please report them in our [issue tracker](https://github.com/eclipse-inception/inception/issues).
 
-[Release notes](https://github.com/inception-project/inception/releases/tag/inception-{{ beta.version }})
+[Release notes](https://github.com/eclipse-inception/inception/releases/tag/inception-{{ beta.version }})
 
 
 {% comment %}
@@ -33,7 +33,7 @@ The native installers are named after the base version without the beta suffix, 
 inception-41.0-beta-2 release contains INCEpTION-41.0-x86_64.msi. The JAR keeps the full version.
 {% endcomment %}
 {% assign beta_base = beta.version | split: "-beta" | first %}
-{% assign release_url = "https://github.com/inception-project/inception/releases" %}
+{% assign release_url = "https://github.com/eclipse-inception/inception/releases" %}
 
 ### Native installers
 

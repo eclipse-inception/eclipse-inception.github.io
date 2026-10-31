@@ -10,7 +10,7 @@ Research groups use INCEpTION to build annotated corpora across a wide range of 
 languages. Below are **{{ data.count }} papers from {{ data.window_from }} and {{ data.window_to }}**
 that used it for their own annotation work.
 
-Are we missing your paper? [Let us know](https://github.com/inception-project/inception/issues) and
+Are we missing your paper? [Let us know](https://github.com/eclipse-inception/inception/issues) and
 we will add it.
 
 {% assign domains = data.papers | map: "domain" | uniq | sort %}
@@ -101,7 +101,7 @@ we will add it.
   The field, task and language labels shown for each paper were likewise assigned with the help of
   an AI. The language label relates to the language of the annotated data, not the paper. AIs make
   mistakes. Spotted a mistake in an entry?
-  <a href="https://github.com/inception-project/inception/issues">Please let us know</a> and we
+  <a href="https://github.com/eclipse-inception/inception/issues">Please let us know</a> and we
   will correct it.
 </p>
 

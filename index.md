@@ -95,13 +95,13 @@ across NLP, linguistics, digital humanities, the biomedical and clinical domain,
 sciences, education, history, law &mdash; and more.
 
 <div class="fp-cta fp-cta-secondary">
-  <a class="fp-cta-item" href="{{ site.url }}/example-projects/">
+  <a class="fp-cta-item" href="{{ site.url }}/tasks/">
     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
     </svg>
     <span>
-      <strong>Example projects</strong>
-      <small>Ready-made schemes to start from</small>
+      <strong>Tasks</strong>
+      <small>Project templates to start from</small>
     </span>
   </a>
 
@@ -122,7 +122,7 @@ sciences, education, history, law &mdash; and more.
       <path d="M10 21h4"/>
     </svg>
     <span>
-      <strong>Use cases</strong>
+      <strong>Stories</strong>
       <small>How other projects set this up</small>
     </span>
   </a>

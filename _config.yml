@@ -29,7 +29,7 @@ plugins:
     
 # This is for the editing function in _/includes/improve_content.html
 # Leave it empty if your site is not on GitHub/GitHub Pages
-improve_content: https://github.com/inception-project/inception-project.github.io/edit/master
+improve_content: https://github.com/eclipse-inception/eclipse-inception.github.io/edit/main
 
 # This URL points directly to the images directory making
 # things easier to link to images in posts and templates. It needs a slash.
@@ -113,7 +113,7 @@ defaults:
   -
     scope:
       path: ""        
-      type: "example-projects"
+      type: "tools"
     values:
       show_meta: false   # Show metadata beneath all posts
       layout: article
@@ -247,8 +247,8 @@ collections:
         layout: article
         sidebar: left
         permalink: /use-cases/:path/
-    example-projects:
+    tools:
         output: true
         layout: article
         sidebar: left
-        permalink: /example-projects/:path/
+        permalink: /tools/:path/
