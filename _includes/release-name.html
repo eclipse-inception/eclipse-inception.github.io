@@ -1,0 +1,7 @@
+{% comment %}
+Name of a release, including its version. Releases before 43.0 were made outside
+the Eclipse Foundation and keep the name INCEpTION.
+Usage: {% include release-name.html version=stable.version %}
+{% endcomment %}
+{%- assign major = include.version | split: "." | first | plus: 0 -%}
+{%- if major >= 43 -%}Eclipse INCEpTION{%- else -%}INCEpTION{%- endif %} {{ include.version -}}

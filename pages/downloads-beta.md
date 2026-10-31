@@ -7,8 +7,10 @@ permalink: "/downloads-beta/"
 {% assign unstable = site.data.releases | where: "status", "unstable" | first %}
 {% assign beta = site.data.releases | where: "status", "beta" | first %}
 
+{% include pre-eclipse-note.html %}
+
 {% if beta %}
-## INCEpTION {{ beta.version }}
+## {% include release-name.html version=beta.version %}
 
 **THIS PAGE CONTAINS PRE-RELEASE VERSIONS. USE AT YOUR OWN RISK.**
 

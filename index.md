@@ -90,7 +90,7 @@ knowledge base, and let a recommender that learns as you go do the repetitive pa
 
 </div>
 
-Developed by the [UKP Lab](https://www.informatik.tu-darmstadt.de/ukp/) at TU Darmstadt, and used
+Originally developed at the [UKP Lab](https://www.informatik.tu-darmstadt.de/ukp/), TU Darmstadt, and used
 across NLP, linguistics, digital humanities, the biomedical and clinical domain, the social
 sciences, education, history, law &mdash; and more.
 

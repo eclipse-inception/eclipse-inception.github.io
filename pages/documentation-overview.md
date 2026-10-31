@@ -7,7 +7,9 @@ permalink: "/documentation/"
 {% assign stable = site.data.releases | where: "status", "stable" | first %}
 {% assign unstable = site.data.releases | where: "status", "unstable" | first %}
 
-## INCEpTION {{ stable.version }}
+{% include pre-eclipse-note.html %}
+
+## {% include release-name.html version=stable.version %}
 _latest release_
 
 * [User Guide]({{ site.url }}/releases/{{ stable.version }}/docs/user-guide.html)
@@ -17,7 +19,7 @@ _latest release_
 {% if unstable %}
 ----
 
-#### INCEpTION {{ unstable.version }}
+#### {% include release-name.html version=unstable.version %}
 _upcoming release - links may be temporarily broken while a build is in progress_
 
 * [User Guide]({{ unstable.user_guide_url }})

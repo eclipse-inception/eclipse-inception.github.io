@@ -11,7 +11,7 @@ has no download glyph (icon-archive rendered as a crate, not an arrow).
       <path d="M12 3v10m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/>
     </svg>
     <span>
-      <strong>Download INCEpTION {{ stable.version }}</strong>
+      <strong>Download {% include release-name.html version=stable.version %}</strong>
       <small>Released {{ stable.date }}</small>
     </span>
   </a>
@@ -34,7 +34,7 @@ has no download glyph (icon-archive rendered as a crate, not an arrow).
       <img class="fp-cta-logo-wide" src="{{ site.url }}/images/logos/eclipse-foundation.svg" alt="">
     </span>
     <span>
-      <strong>INCEpTION is moving to Eclipse</strong>
+      <strong>Now incubating at the Eclipse Foundation</strong>
       <small>Find out what this means</small>
     </span>
   </a>
