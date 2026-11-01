@@ -21,7 +21,7 @@ The recommender pipeline can be easily adapted to incorporate other features fro
 
 You can set this up in three easy steps:
 
-1. Download and import the example project from the left sidebar
+1. Download the example project using the **Download example project** link on this page and import it
 
 2. Download the pre-computed xMEN index for SNOMED CT (Germany) per the [instructions][2] and extract it to the current directory.
 

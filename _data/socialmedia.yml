@@ -1,39 +1,14 @@
 - name: YouTube
   url: https://www.youtube.com/watch?v=Ely8eBKqiSI&list=PL5Hz5pttaj96SlXHGRZf8KzlYvpVHIoL-
-  class: icon-youtube
+  class: bi-youtube
   title: "Tutorials for WebAnno on YouTube"
 
 - name: Bluesky
   url: https://bsky.app/search?q=%23tap_inception
-#  class: icon-twitter
+  class: bi-bluesky
   title: "Bluesky: #tap_inception"
-
-#- name: Facebook
-#  url: http://www.facebook.com/phlow.media
-#  class: icon-facebook
-#  title: "Lass uns Freunde sein!"
-
-#- name: Soundcloud
-#  url: http://soundcloud.com/phlow
-#  class: icon-soundcloud
-#  title: "Sounds und Downloads und mehr"
 
 - name: GitHub
   url: https://github.com/eclipse-inception/inception
-  class: icon-github
+  class: bi-github
   title: "All our code"
-
-#- name: Instagram
-#  url: http://instagram.com/phlowmedia
-#  class: icon-instagram
-#  title: "Bilder und Impressionen mit und ohne Filter..."
-
-#- name: Pinterest
-#  url: http://www.pinterest.com/phlowmedia/
-#  class: icon-pinterest
-#  title: "Bilder, Fotos, Illustrationen, Grafiken sammeln..."
-
-#- name: Mixcloud
-#  url: http://www.mixcloud.com/phlow/
-#  class: icon-cloud
-#  title: "Mixe, was sonst?"
