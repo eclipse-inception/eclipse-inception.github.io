@@ -32,4 +32,4 @@ _upcoming release - links may be temporarily broken while a build is in progress
 #### Additional material
 
 * [Code examples]({{ site.url }}/code-examples/)
-* [INCEpTIOn 20.x Intro Slide Deck]({{ site.url }}/publications/INCEpTION-20.x-Intro.pdf)
+* [INCEpTION 20.x Intro Slide Deck]({{ site.url }}/publications/INCEpTION-20.x-Intro.pdf)

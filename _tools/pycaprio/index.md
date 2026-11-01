@@ -1,7 +1,8 @@
 ---
 title: Pycaprio
 third_party: true
-subheadline: "[Library] Python client for the INCEpTION remote API"
+kind: Library
+subheadline: "Python client for the INCEpTION remote API"
 permalink: /tools/pycaprio/
 ---
 

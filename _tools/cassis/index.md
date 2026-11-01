@@ -1,7 +1,8 @@
 ---
 title: DKPro Cassis
 third_party: true
-subheadline: "[Library] Work with UIMA CAS data in Python"
+kind: Library
+subheadline: "Work with UIMA CAS data in Python"
 permalink: /tools/cassis/
 ---
 

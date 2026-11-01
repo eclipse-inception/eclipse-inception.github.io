@@ -1,7 +1,8 @@
 ---
 title: xMEN Recommender for INCEpTION
 third_party: true
-subheadline: "[Tool] Cross-lingual medical entity linking"
+kind: Tool
+subheadline: "Cross-lingual medical entity linking"
 permalink: /tools/xmen/
 example-project: project-xmen-recommender-for-snomed-ct-2024-12-08-204244.zip
 # screenshot: screenshot.png

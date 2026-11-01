@@ -305,27 +305,11 @@ body.video cite { color: #fff; }
 /* Footer
 ------------------------------------------------------------------- */
 
-#footer {
-    padding-top: 30px;
-    padding-bottom: 20px;
-    background: $footer-bg;
-    color: $footer-color;
-    }
-    footer p,
-    footer li {
-        font-size: rem-calc(13);
-        font-weight: 300;
-    }
-
-    #footer a {
-        color: $footer-link-color;
-    }
-    #footer h4,
-    #footer h5 {
-        letter-spacing: 1px;
-        color: #fff;
-        text-transform: uppercase;
-    }
+footer p,
+footer li {
+    font-size: rem-calc(13);
+    font-weight: 300;
+}
 
 
 

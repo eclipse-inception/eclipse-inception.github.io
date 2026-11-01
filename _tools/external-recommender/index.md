@@ -1,7 +1,8 @@
 ---
 title: External Recommender for INCEpTION
 third_party: true
-subheadline: "[Tool] Run your own recommenders using Python"
+kind: Tool
+subheadline: "Run your own recommenders using Python"
 permalink: /tools/external-recommender/
 ---
 
