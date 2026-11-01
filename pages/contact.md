@@ -4,13 +4,22 @@ title: "Contact"
 permalink: "/contact/"
 ---
 
-### Mailing Lists
+### Questions and feedback
 
-You can best reach us through the users mailing list:
+Ask questions about INCEpTION, share your experiences and provide feedback:
 
-<div style="text-align:center; font-size: 200%;">
-<a href="https://groups.google.com/d/forum/inception-users">Users mailing list</a>
-</div>
+* [GitHub Discussions](https://github.com/eclipse-inception/inception/discussions)
+* [Users mailing list](https://groups.google.com/d/forum/inception-users)
+
+### Bugs and feature requests
+
+Report bugs and request features in the
+[issue tracker](https://github.com/eclipse-inception/inception/issues).
+
+### Development
+
+Discuss the development of INCEpTION as an Eclipse project on the
+[developer mailing list](https://www.eclipse.org/mailman/listinfo/inception-dev).
 
 {% comment %}
 ### Team

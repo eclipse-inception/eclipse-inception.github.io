@@ -45,23 +45,14 @@
   - title: "Papers using INCEpTION"
     url: "/papers-using-inception/"
 
-- title: GitHub
-  url: "https://github.com/eclipse-inception"
+- title: Source
+  url: "https://github.com/eclipse-inception/inception"
   side: left
-  dropdown:
-  - title: "Issues"
-    url: "https://github.com/eclipse-inception/inception/issues"
-    side: left
-  - title: Source
-    url: "https://github.com/eclipse-inception/inception"
-    side: left
 
 - title: "Contact"
   url: "/contact"
   side: left
   dropdown:
-  - title: "Mailing lists"
-    url: "/mailinglists"
   - title: "Contributors"
     url: "https://github.com/eclipse-inception/inception/blob/main/CONTRIBUTORS.txt"
   - title: "About"

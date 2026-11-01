@@ -55,13 +55,11 @@
 
 .alert-box {
   font-family: $font-family-sans-serif;
-  text-shadow: 0px 1px 1px rgba(0,0,0,0.9);
-} 
+}
   .alert-box p {
     margin-bottom: 0;
-  } 
+  }
   .alert-box a {
-    text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
     color: #fff;
     border-bottom: 1px dotted #fff;
   }
@@ -80,9 +78,20 @@
   }
   .alert-box.text {
     background-color: $grey-2;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0.9);
     border-color: scale-color($grey-2, $lightness: -14%);
     color: $grey-12;
+  }
+  .alert-box.info {
+    background-color: #f3f6f8;
+    border-width: 0 0 0 3px;
+    border-color: $ci-1;
+    color: $text-color;
+    font-size: rem-calc(14);
+  }
+  .alert-box.info a,
+  .alert-box.info a:hover {
+    color: $ci-1;
+    border-bottom-color: $ci-1;
   }
 
 
