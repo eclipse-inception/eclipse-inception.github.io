@@ -1,0 +1,78 @@
+This website includes the following third-party content. The license texts are in the
+licenses folder, except for the font license, which is next to the fonts.
+
+MIT License (licenses/MIT.txt)
+------------------------------
+
+Feeling Responsive (site theme, modified)
+  Copyright: Copyright (c) 2014 Moritz Sauer // Phlow.de
+  Files:     _layouts, _includes, _sass and assets/js, except where listed below
+  Source:    https://github.com/Phlow/feeling-responsive
+
+Foundation 5.5.0
+  Copyright: Copyright (c) 2013-2014 ZURB, inc.
+  Files:     _sass/foundation-components, assets/js/javascript.js, assets/js/javascript.min.js
+  Source:    https://github.com/foundation/foundation-sites
+
+jQuery 2.1.1, including Sizzle
+  Copyright: Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
+  Files:     assets/js/javascript.js, assets/js/javascript.min.js
+  Source:    https://jquery.com/
+
+jquery-requestAnimationFrame, included in Foundation
+  Copyright: Copyright (c) 2012 Corey Frang
+  Files:     assets/js/javascript.js, assets/js/javascript.min.js
+  Source:    https://github.com/gnarf37/jquery-requestAnimationFrame
+
+FastClick 1.0.3
+  Copyright: Copyright (c) 2014 The Financial Times Ltd.
+  Files:     assets/js/javascript.js, assets/js/javascript.min.js
+  Source:    https://github.com/ftlabs/fastclick
+
+Backstretch 2.0.4
+  Copyright: Copyright (c) 2013 Scott Robbin
+  Files:     assets/js/javascript.js, assets/js/javascript.min.js
+  Source:    http://srobbin.com/jquery-plugins/backstretch/
+
+Modernizr 2.8.3 (dual-licensed under the BSD and MIT licenses, used under MIT)
+  Copyright: Copyright (c) Faruk Ates, Paul Irish, Alex Sexton
+  Files:     assets/js/modernizr.js, assets/js/modernizr.min.js
+  Source:    https://github.com/Modernizr/Modernizr
+
+JavaScript Cookie 2.0.2
+  Copyright: Copyright 2006, 2015 Klaus Hartl
+  Files:     assets/js/js.cookie.js
+  Source:    https://github.com/js-cookie/js-cookie
+
+normalize.css 3.0.2
+  Copyright: Copyright (c) Nicolas Gallagher and Jonathan Neal
+  Files:     _sass/_05_normalize.scss
+  Source:    https://github.com/necolas/normalize.css
+
+Bootstrap Icons 1.13.2
+  Copyright: Copyright (c) 2019-2024 The Bootstrap Authors
+  Files:     assets/fonts/bootstrap-icons
+  Source:    https://github.com/twbs/icons/releases/tag/v1.13.2
+
+Asciidoctor default stylesheet
+  Copyright: Copyright (C) 2012-present Dan Allen, Sarah White, Ryan Waldron, and the
+             individual contributors to Asciidoctor
+  Files:     embedded in the HTML documentation under releases
+  Source:    https://github.com/asciidoctor/asciidoctor
+
+SIL Open Font License 1.1 (assets/fonts/lato/OFL.txt)
+-----------------------------------------------------
+
+Lato
+  Copyright: Copyright (c) 2010-2014 by tyPoland Lukasz Dziedzic (team@latofonts.com)
+             with Reserved Font Name "Lato"
+  Files:     assets/fonts/lato
+  Source:    https://github.com/google/fonts/tree/5d3b76120a319730fda218cc7410174a462b32cb/ofl/lato
+  Changes:   Complete TrueType files compressed to WOFF2. No glyphs, features or font
+             metadata were removed or changed.
+
+Trademarks
+----------
+
+The logos in images/logos and the brand icons in Bootstrap Icons belong to their
+respective owners and are not covered by the licenses above.

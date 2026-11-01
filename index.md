@@ -96,9 +96,7 @@ sciences, education, history, law &mdash; and more.
 
 <div class="fp-cta fp-cta-secondary">
   <a class="fp-cta-item" href="{{ site.url }}/tasks/">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M4 6a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/>
-    </svg>
+    <i class="bi-folder" aria-hidden="true"></i>
     <span>
       <strong>Tasks</strong>
       <small>Project templates to start from</small>
@@ -106,10 +104,7 @@ sciences, education, history, law &mdash; and more.
   </a>
 
   <a class="fp-cta-item" href="{{ site.url }}/papers-using-inception/">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M5 4h9l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"/>
-      <path d="M14 4v5h5M8 13h8M8 17h5"/>
-    </svg>
+    <i class="bi-file-earmark-text" aria-hidden="true"></i>
     <span>
       <strong>Papers using INCEpTION</strong>
       <small>{{ site.data.papers.count }} recent studies by field</small>
@@ -117,10 +112,7 @@ sciences, education, history, law &mdash; and more.
   </a>
 
   <a class="fp-cta-item" href="{{ site.url }}/use-cases/">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M12 3a7 7 0 0 0-4 12.7V18a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.3A7 7 0 0 0 12 3z"/>
-      <path d="M10 21h4"/>
-    </svg>
+    <i class="bi-lightbulb" aria-hidden="true"></i>
     <span>
       <strong>Stories</strong>
       <small>How other projects set this up</small>
