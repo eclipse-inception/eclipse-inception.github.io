@@ -128,6 +128,29 @@ $fp-gap: 2.5rem;
   iframe { width: 100%; }
 }
 
+// Stand-in for the video player until the visitor chooses to load it from YouTube.
+.video-consent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  height: 227px;
+  padding: 1rem;
+  border-radius: 3px;
+  background: $ci-1;
+  color: #fff;
+  text-align: center;
+
+  &:hover, &:focus {
+    background: darken($ci-1, 8%);
+    color: #fff;
+  }
+
+  i { font-size: 3rem; line-height: 1; }
+  small { font-size: .75rem; }
+}
+
 // Keep the sidebar alongside for as long as the content column can still hold
 // one full-width feature panel with readable copy beside its illustration.
 // The sidebar plus gap and gutters costs ~341px; at 56em that still leaves

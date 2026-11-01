@@ -132,7 +132,7 @@ For publications on more specific aspects of the platform, have a look at our [c
 
 ### License
 
-INCEpTION is provided as open source under the Apache License v2.0.
+Eclipse INCEpTION is provided as open source under the Apache License v2.0.
 
 [COLING-2018-PDF]: {{ site.url }}/publications/INCEpTION-COLING2018-Demo.pdf
 [COLING-2018-FLYER]: {{ site.url }}/publications/INCEpTION-COLING2018-Flyer.pdf

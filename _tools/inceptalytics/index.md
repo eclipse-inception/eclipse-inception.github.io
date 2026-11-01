@@ -1,7 +1,8 @@
 ---
 title: INCEpTALYTICS
 third_party: true
-subheadline: "[Tool] Analyzing INCEpTION annotation projects"
+kind: Tool
+subheadline: "Analyzing INCEpTION annotation projects"
 permalink: /tools/inceptalytics/
 ---
 

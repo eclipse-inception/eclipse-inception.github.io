@@ -1,7 +1,8 @@
 ---
 title: CORLINCEpTION converter
 third_party: true
-subheadline: "[Tool] Complete conversion of standard XML to and from INCEpTION"
+kind: Tool
+subheadline: "Complete conversion of standard XML to and from INCEpTION"
 permalink: /tools/corlinception/
 ---
 

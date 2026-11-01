@@ -1,7 +1,8 @@
 ---
 title: Reporting Dashboard for INCEpTION
 third_party: true
-subheadline: "[Tool] Track and visualize the progress of your projects"
+kind: Tool
+subheadline: "Track and visualize the progress of your projects"
 permalink: /tools/reporting-dashboard/
 ---
 
