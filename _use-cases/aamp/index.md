@@ -1,5 +1,6 @@
 ---
 title: Annotation and Analysis of Moralization Practices
+domain: "Social science & politics"
 permalink: /use-cases/aamp/
 # screenshot: screenshot.png
 # thumbnail: screenshot-thumb.png

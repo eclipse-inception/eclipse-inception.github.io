@@ -1,7 +1,8 @@
 ---
-title: RUFFERS 2024
+title: RUFEERS 2024
+domain: "NLP & computational linguistics"
 subheadline: Recognizing Ultra Fine-grained Entities, Events, and Relations
-permalink: /use-cases/ruffers-2024/
+permalink: /use-cases/rufeers-2024/
 hidden: false
 ---
 

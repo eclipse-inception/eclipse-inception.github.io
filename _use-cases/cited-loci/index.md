@@ -1,5 +1,6 @@
 ---
 title: Cited Loci
+domain: "Classics & ancient languages"
 subheadline: Annotate references to classical authors and their works.
 # subheadline: indexing of canonical references
 permalink: /use-cases/cited-loci/

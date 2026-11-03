@@ -1,5 +1,6 @@
 ---
 title: MAPA
+domain: "NLP & computational linguistics"
 subheadline: Named Entity Annotation in the MAPA Project
 permalink: /use-cases/mapa/
 hidden: false

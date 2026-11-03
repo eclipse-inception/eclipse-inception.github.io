@@ -1,5 +1,6 @@
 ---
 title: "Protest and Social Cohesion"
+domain: "Social science & politics"
 subheadline: Comparing Local Conflict Dynamics; Annotation of protest events in a German newspaper corpus
 permalink: /use-cases/protest/
 #screenshot: screenshot.png

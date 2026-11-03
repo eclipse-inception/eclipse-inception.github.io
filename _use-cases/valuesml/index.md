@@ -1,5 +1,6 @@
 ---
 title: ValuesML
+domain: "Social science & politics"
 subheadline: Unravelling Expressed Values in the Media for Informed Policy Making
 permalink: /use-cases/valuesml/
 screenshot: screenshot.png

@@ -1,5 +1,6 @@
 ---
 title: GeMTeX
+domain: "Biomedical & clinical"
 subheadline: German Medical Text Corpus
 permalink: /use-cases/gemtex/
 #screenshot: screenshot.png

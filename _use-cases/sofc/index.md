@@ -1,5 +1,6 @@
 ---
 title: SOFC-Exp Corpus
+domain: "Natural sciences"
 subheadline: Annotating experiments in scientific publications on solid oxide fuel cells
 permalink: /use-cases/sofc/
 screenshot: screenshot.png

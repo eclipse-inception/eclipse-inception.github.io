@@ -1,5 +1,6 @@
 ---
 title: FAMULUS
+domain: "Education & learner corpora"
 subheadline: Annotate student essays with categories of diagnostic reasoning.
 permalink: /use-cases/famulus/
 screenshot: screenshot.png

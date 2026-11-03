@@ -335,8 +335,20 @@ footer li {
             color: $subfooter-color;
         }
     }
-    #subfooter-left ul.inline-list {
-        float: left;
+    #subfooter-eclipse .inline-list li {
+        margin-left: 0;
+        margin-right: rem-calc(16);
+        font-size: rem-calc(12);
+    }
+    #subfooter-eclipse .inline-list {
+        margin-left: 0;
+    }
+    #subfooter-right .inline-list {
+        margin-left: 0;
+    }
+    #subfooter-right .inline-list li {
+        margin-left: 0;
+        margin-right: rem-calc(16);
     }
     #subfooter li a {
         color: $subfooter-link-color;

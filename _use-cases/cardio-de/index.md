@@ -1,5 +1,6 @@
 ---
 title: CARDIO:DE
+domain: "Biomedical & clinical"
 subheadline: A distributable German clinical corpus containing cardiovascular clinical routine doctor’s letters
 permalink: /use-cases/cardio-de/
 screenshot: cardio-de-logo.png

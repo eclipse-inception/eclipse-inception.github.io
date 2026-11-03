@@ -1,5 +1,6 @@
 ---
 title: GGPONC
+domain: "Biomedical & clinical"
 subheadline: German Guideline Program in Oncology NLP Corpus
 permalink: /use-cases/ggponc/
 screenshot: screenshot.png

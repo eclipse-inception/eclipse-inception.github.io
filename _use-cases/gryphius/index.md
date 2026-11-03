@@ -1,5 +1,6 @@
 ---
 title: Andreas Gryphius
+domain: "Digital humanities & literature"
 subheadline: The interactional language of Andreas Gryphius
 permalink: /use-cases/gryphius/
 # screenshot: screenshot.png

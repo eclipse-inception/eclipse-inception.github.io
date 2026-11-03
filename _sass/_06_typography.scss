@@ -224,32 +224,16 @@ article dl dd   { line-height: 1.6; margin-bottom: rem-calc(12); margin-left: re
 ------------------------------------------------------------------- */
 
 blockquote {
-    font-style: italic;
-    position: relative;
-    border: none;
-    margin: 0 30px 30px 30px;
-    color: #4b4b4d
+    margin: 0 0 rem-calc(20);
+    padding: 0 0 0 rem-calc(16);
+    border-left: 3px solid $grey-2;
 }
- 
-    blockquote p {font-style: italic; color: $grey-10; }
- 
-    blockquote:before {
-        display:block;content:"\00BB";
-        font-size:80px;
-        position:absolute;
-        left:-25px;
-        top:-40px;
-        color:#4b4b4d
+
+    blockquote p {
+        margin-bottom: 0;
+        color: $text-color;
     }
-    blockquote:after {
-        display:block;
-        content:"\00AB";
-        font-size:80px;
-        position:absolute;
-        right:-10px;
-        bottom:-40px;
-        color:#4b4b4d;
-    }
+
     blockquote cite:before {
         content:"\2014 \0020"
     }

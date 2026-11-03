@@ -1,5 +1,6 @@
 ---
 title: Portuguese Parish Memories (1758-1761)
+domain: "History & archives"
 subheadline: Language variation and named entities
 permalink: /use-cases/parish-memories/
 hidden: false
