@@ -1,5 +1,6 @@
 ---
 title: Cross-Document Event Coreference
+domain: "NLP & computational linguistics"
 subheadline: Annotating mentions of events in news articles and linking them to an event knowledge base
 permalink: /use-cases/cdcr/
 screenshot: cdcr.png

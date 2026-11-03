@@ -1,5 +1,6 @@
 ---
 title: Legal Argument Mining
+domain: "Law"
 subheadline: Annotating arguments in judgments of the European Court of Human Rights
 permalink: /use-cases/legal-argument-mining/
 screenshot: European_Court_of_Human_Rights_logo.svg.png

@@ -1,0 +1,15 @@
+{% comment %}
+Lists the visible entries of a collection as cards, using their front matter.
+
+Example: {% include collection-cards.html collection='tools' %}
+{% endcomment %}
+{% assign items = site[include.collection] | sort_natural: 'title' %}
+<div class="collection-cards">
+{% for item in items %}{% unless item.hidden == true %}
+<a class="collection-card" href="{{ site.url }}{{ item.url }}">
+<strong>{{ item.title }}</strong>
+<small>{% if item.kind %}<span class="tool-kind">{{ item.kind }}</span>{% endif %}{{ item.subheadline }}</small>
+{% if item.domain %}<small class="collection-card-domain"><span class="tool-kind">{{ item.domain }}</span></small>{% endif %}
+</a>
+{% endunless %}{% endfor %}
+</div>

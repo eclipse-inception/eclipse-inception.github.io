@@ -1,5 +1,6 @@
 ---
 title: Impresso
+domain: "History & archives"
 subheadline: Critical text mining of newspaper archives 
 permalink: /use-cases/impresso/
 # screenshot: screenshot.png

@@ -1,5 +1,6 @@
 ---
 title: PO-EMO
+domain: "Digital humanities & literature"
 subheadline: Annotate poetry for its emotional impact 
 permalink: /use-cases/po-emo/
 hidden: false

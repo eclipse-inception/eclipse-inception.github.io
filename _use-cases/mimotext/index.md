@@ -1,5 +1,6 @@
 ---
 title: Mining and Modeling Text (MiMoText)
+domain: "Digital humanities & literature"
 subheadline: Building a knowledge graph on French literary historiography
 permalink: /use-cases/mimotext/
 hidden: false

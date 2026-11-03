@@ -1,5 +1,6 @@
 ---
 title: Company Inventory
+domain: "History & archives"
 subheadline: Efficient annotation of company inventory data
 permalink: /use-cases/company-inventory/
 hidden: hidden

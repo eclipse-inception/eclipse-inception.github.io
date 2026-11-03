@@ -1,5 +1,6 @@
 ---
 title: ATLOMY
+domain: "History & archives"
 subheadline: interdisciplinary study of the history of anatomy
 permalink: /use-cases/atlomy/
 hidden: false

@@ -2,8 +2,8 @@
 layout: default
 format: post
 ---
-<div class="row t30" style="max-width: none;">
-    <div class="medium-6 columns {% if page.sidebar == 'left' %} medium-push-3{% endif %}">
+<div class="row t30">
+    <div class="medium-9 columns {% if page.sidebar == 'left' %} medium-push-3{% endif %}">
         <article itemscope itemtype="http://schema.org/Article">
             <header>
                 {% if page.image.title %}
@@ -23,7 +23,7 @@ format: post
                 {% endif %}
 
                 <span itemprop="name">
-                    {% if page.subheadline %}<p class="subheadline">{% if page.kind %}<span class="tool-kind">{{ page.kind }}</span>{% endif %}{{ page.subheadline }}</p>{% endif %}
+                    {% if page.subheadline or page.domain %}<p class="subheadline">{% if page.kind %}<span class="tool-kind">{{ page.kind }}</span>{% endif %}{% if page.domain %}<span class="tool-kind">{{ page.domain }}</span>{% endif %}{{ page.subheadline }}</p>{% endif %}
                 </span>
             </header>
 
@@ -34,6 +34,18 @@ format: post
             {% endif %}
 
             {% if page.third_party %}{% include third-party-tool-note.html %}{% endif %}
+
+            {% if page.screenshot or page.example-project %}
+            <aside class="article-aside">
+              {% if page.screenshot %}
+              <a href="{{ page.screenshot }}"><img src="{{ page.thumbnail }}" alt=""/></a>
+              <small>Click on thumbnail to see full image.</small>
+              {% endif %}
+              {% if page.example-project %}
+              <a href="{{ page.example-project }}"><i class="bi-archive" aria-hidden="true"></i> Download example project</a>
+              {% endif %}
+            </aside>
+            {% endif %}
 
             <span itemprop="articleSection">
             {{ content }}
@@ -47,25 +59,9 @@ format: post
             {% include comments.html %}
             {% endif %}
         </article>
-    </div><!-- /.medium-6.columns -->
+    </div><!-- /.medium-9.columns -->
 
     {% if page.sidebar == "left" %}
-    <div class="medium-3 medium-push-3 columns">
-      {% if page.screenshot %}
-      <div>
-        <a href="{{ page.screenshot }}"><img src="{{ page.thumbnail }}" width="100%" style="border: solid grey 1px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"/></a>
-        <div style="font-size: small; text-align: center;">Click on thumbnail to see full image.</div>
-      </div>
-      {% endif %}
-      {% if page.example-project %}
-      <div style="text-align: center;">
-        <a href="{{ page.example-project }}">
-        <span class="bi-archive" style="font-size: 400%;"></span> <br>
-        Download example project
-        </a>
-      </div>
-      {% endif %}
-    </div><!-- /.medium-3.columns -->
     <div class="medium-3 medium-pull-9 columns">
         {% include list-collection.html collection=page.collection sticky-link-url=page.sticky-link-url sticky-link-title=page.sticky-link-title %}
     </div><!-- /.medium-3.columns -->

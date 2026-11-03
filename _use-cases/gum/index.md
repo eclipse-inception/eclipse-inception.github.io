@@ -1,5 +1,6 @@
 ---
 title: GUM Corpus
+domain: "Linguistics & typology"
 subheadline: Georgetown University Multilayer Corpus (GUM)
 permalink: /use-cases/gum/
 # screenshot: screenshot.png

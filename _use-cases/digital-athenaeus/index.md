@@ -1,5 +1,6 @@
 ---
 title: Digital Athenaeus
+domain: "Classics & ancient languages"
 subheadline: Named Entity Annotation for Ancient Greek
 permalink: /use-cases/digital-athenaeus/
 hidden: false

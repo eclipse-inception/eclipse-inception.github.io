@@ -1,26 +1,13 @@
 // Front page prose. The content column is the full $row-width, which is right
 // for the feature panels but far too wide for running text, so text blocks are
-// capped and centred inside it. Figures, blockquotes and tables opt out and use
-// the whole column; .feature-grid is untouched.
+// capped, keeping the same left edge as the rest of the column. Figures and
+// tables opt out and use the whole column; .feature-grid is untouched.
 .frontpage-prose {
   // Running text keeps a readable measure (~65-75 characters); at the full
   // 1000px a line runs to ~120 characters and the eye loses the return sweep.
-  // The cap is applied to a centred wrapper rather than to each paragraph, so
-  // the text block sits in the middle of the content column instead of hugging
-  // its left edge.
   > p, > ul, > ol, > h1, > h2, > h3, > h4, > dl, > blockquote {
     max-width: 40rem;
-    margin-left: auto;
-    margin-right: auto;
   }
-
-  // The blockquote is capped along with the prose now that capped blocks are
-  // centred rather than left-aligned: the theme hangs its large decorative
-  // quote marks off the box corners with absolute positioning, and those only
-  // looked stranded while the narrowed box sat against the left edge of a much
-  // wider column. The auto side margins above override the theme's
-  // `margin: 0 30px 30px 30px` on left/right only, so its bottom spacing
-  // survives.
 
   // Tables can need the room, so they keep the full column.
   > table {
@@ -28,17 +15,83 @@
   }
 
   // A paragraph holding only an image is a figure, not prose: it uses the full
-  // column width, centred.
+  // column width.
   > p:has(> img:only-child) {
     max-width: none;
-    text-align: center;
   }
 
   > p > img:only-child,
   > img {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.frontpage-slogan {
+  margin-top: 0;
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+// Cards listing a collection on its index page.
+.collection-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(18rem, 100%), 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  padding: .9rem 1.1rem;
+  border: 1px solid $grey-3;
+  border-radius: 3px;
+  background: #fff;
+  color: $ci-1;
+  font-weight: normal;
+
+  &:hover, &:focus {
+    border: 1px solid $ci-1;
+    background: scale-color($ci-1, $lightness: 95%);
+    color: $ci-1;
+  }
+
+  small {
+    font-size: .85rem;
+    line-height: 1.4;
+    color: $grey-9;
+  }
+
+  // Keeps the field labels in a row along the bottom of the cards.
+  .collection-card-domain { margin-top: auto; }
+}
+
+// Screenshot and example project of a story or tool, beside its text.
+.article-aside {
+  margin-bottom: 1rem;
+  text-align: center;
+
+  img {
+    display: block;
+    width: 100%;
+    margin-bottom: .25rem;
+    border: 1px solid $grey-3;
+  }
+
+  small {
+    display: block;
+    margin-bottom: .75rem;
+    color: $grey-9;
+  }
+
+  // The theme gives every aside a min-width of 320px, too wide to float beside
+  // text in the narrower content column of a tablet.
+  @media only screen and (min-width: 64.063em) {
+    float: right;
+    width: 320px;
+    margin-left: 1.5rem;
   }
 }
 
@@ -200,28 +253,11 @@ $fp-gap: 2.5rem;
   small { font-size: .75rem; color: $grey-9; }
 }
 
-// Logo pair "INCEpTION -> Eclipse Foundation" in place of a single icon.
-.fp-cta-item .fp-cta-logos {
-  flex: 0 0 auto;
-  flex-direction: row;
-  align-items: center;
-  gap: .3rem;
-
-  img { height: 1.5rem; width: auto; border-radius: 2px; }
-  img.fp-cta-logo-wide { height: 1.45rem; border-radius: 0; }
-
-  i { font-size: 1rem; color: $grey-7; }
-}
-
 // Secondary calls to action, below the feature panels: the reader has just been
 // pitched, and these answer "did anyone actually get this working?" They are
 // deliberately quieter than the download/demo pair at the top -- putting all
 // four in one row would dilute the two that matter for conversion.
 .fp-cta-secondary {
-  max-width: 40rem;      // share the prose measure
-  margin-left: auto;
-  margin-right: auto;
-
   .fp-cta-item {
     padding: .75rem 1rem;
     background: transparent;

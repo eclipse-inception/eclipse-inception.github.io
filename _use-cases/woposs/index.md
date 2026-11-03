@@ -1,5 +1,6 @@
 ---
 title: A World of Possibilities
+domain: "Classics & ancient languages"
 subheadline: Semantic annotation of modality in a diachronic Latin corpus
 permalink: /use-cases/woposs/
 screenshot: screenshot.png

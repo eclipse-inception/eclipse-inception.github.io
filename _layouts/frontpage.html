@@ -13,18 +13,6 @@ format: blog-index
 
 {% comment %}
 *
-* First check, if widget is empty or not by checking if there is a title
-*
-{% endcomment %}
-<div class="row t20">
-	<div class="medium-12 columns">
-		<h2>{{ page.header-1.title }}</h2>
-		{{ page.header-1.text }}
-    </div><!-- /.medium-12.columns -->
-</div><!-- /.row -->
-
-{% comment %}
-*
 * Front page: the content column keeps the full $row-width (1000px) that the
 * theme's typography was sized for, and the sidebar sits beside it in the
 * margin *outside* that budget -- so it no longer eats a third of the measure
@@ -34,6 +22,8 @@ format: blog-index
 {% endcomment %}
 <div class="frontpage-shell t30">
     <div class="frontpage-main">
+        <h2 class="frontpage-slogan">{{ page.header-1.title }}</h2>
+        {{ page.header-1.text }}
         {% include frontpage-cta.html %}
         <div class="frontpage-prose">
             {{ content }}

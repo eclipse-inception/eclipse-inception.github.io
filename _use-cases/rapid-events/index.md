@@ -1,5 +1,6 @@
 ---
 title: Rapid adaptation of event detection
+domain: "NLP & computational linguistics"
 subheadline: Use external search to select and annotate training examples.
 permalink: /use-cases/rapid-events/
 screenshot: screenshot.png
