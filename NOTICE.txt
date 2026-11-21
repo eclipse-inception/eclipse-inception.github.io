@@ -39,11 +39,6 @@ Modernizr 2.8.3 (dual-licensed under the BSD and MIT licenses, used under MIT)
   Files:     assets/js/modernizr.js, assets/js/modernizr.min.js
   Source:    https://github.com/Modernizr/Modernizr
 
-JavaScript Cookie 2.0.2
-  Copyright: Copyright 2006, 2015 Klaus Hartl
-  Files:     assets/js/js.cookie.js
-  Source:    https://github.com/js-cookie/js-cookie
-
 normalize.css 3.0.2
   Copyright: Copyright (c) Nicolas Gallagher and Jonathan Neal
   Files:     _sass/_05_normalize.scss
