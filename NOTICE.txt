@@ -1,3 +1,35 @@
+# Notices for the Eclipse INCEpTION website
+
+This content is produced and maintained by the Eclipse INCEpTION project.
+
+* Project home: https://projects.eclipse.org/projects/technology.inception
+* Website: https://eclipse-inception.github.io
+
+## Trademarks
+
+Eclipse INCEpTION is a trademark of the Eclipse Foundation.
+
+## Copyright
+
+All content is the property of the respective authors or their employers. For more information
+regarding authorship of content, please consult the listed source code repository logs.
+
+## Declared Project Licenses
+
+This program and the accompanying materials are made available under the terms of the Apache
+License, Version 2.0 which is available at https://www.apache.org/licenses/LICENSE-2.0.
+
+SPDX-License-Identifier: Apache-2.0
+
+## Source Code
+
+The project maintains the following source code repositories:
+
+* https://github.com/eclipse-inception/inception
+* https://github.com/eclipse-inception/eclipse-inception.github.io
+
+## Third-party Content
+
 This website includes the following third-party content. The license texts are in the
 licenses folder, except for the font license, which is next to the fonts.
 
@@ -66,8 +98,69 @@ Lato
   Changes:   Complete TrueType files compressed to WOFF2. No glyphs, features or font
              metadata were removed or changed.
 
-Trademarks
-----------
+Creative Commons Attribution 4.0 International (https://creativecommons.org/licenses/by/4.0/)
+---------------------------------------------------------------------------------------------
 
-The logos in images/logos and the brand icons in Bootstrap Icons belong to their
-respective owners and are not covered by the licenses above.
+Papers published by the Association for Computational Linguistics (ACL), kept here as copies
+of the published versions. The ACL Anthology licenses all ACL material published in or after
+2016 under CC BY 4.0 (https://aclanthology.org/faq/copyright/). None of the files was changed,
+except that the thumbnails are images taken from the papers.
+
+The INCEpTION Platform: Machine-Assisted and Knowledge-Oriented Interactive Annotation
+  Copyright: Jan-Christoph Klie, Michael Bugert, Beto Boullosa, Richard Eckart de Castilho,
+             Iryna Gurevych; the paper states the CC BY 4.0 license itself
+  Files:     publications/INCEpTION-COLING2018-Demo.pdf
+  Source:    https://aclanthology.org/C18-2002/
+
+Integrating Knowledge-Supported Search into the INCEpTION Annotation Platform
+  Copyright: Copyright 2018 Association for Computational Linguistics
+  Files:     publications/D18-2022.pdf
+  Source:    https://aclanthology.org/D18-2022/
+
+A Multi-Platform Annotation Ecosystem for Domain Adaptation
+  Copyright: Copyright 2019 Association for Computational Linguistics
+  Files:     publications/W19-4021.pdf
+  Source:    https://aclanthology.org/W19-4021/
+
+From Zero to Hero: Human-In-The-Loop Entity Linking in Low Resource Domains
+  Copyright: Copyright 2020 Association for Computational Linguistics
+  Files:     publications/ACL-2020-thumb.png (figure from the paper)
+  Source:    https://aclanthology.org/2020.acl-main.624/
+
+Integrating INCEpTION into larger annotation processes
+  Copyright: Copyright 2024 Association for Computational Linguistics
+  Files:     publications/EMNLP-2024-thumb.png (image from the paper)
+  Source:    https://aclanthology.org/2024.emnlp-demo.12/
+
+No license stated
+-----------------
+
+Papers published outside the project, kept here as copies so that they stay available. They
+state no license; the copyright stays with the holders named below. These files are not
+covered by the project license.
+
+INCEpTION: Interactive Machine-assisted Annotation (extended abstract)
+  Copyright: Copyright 2018 held by the owner/author(s) (Jan-Christoph Klie), as stated
+             in the paper
+  Files:     publications/DESIRES-2018.pdf
+  Published: Proceedings of the First Biennial Conference on Design of Experimental Search &
+             Information Retrieval Systems (DESIRES 2018)
+
+Linking Text and Knowledge using the INCEpTION annotation platform
+  Copyright: Richard Eckart de Castilho, Jan-Christoph Klie, Naveen Kumar, Beto Boullosa,
+             Iryna Gurevych, or the publisher; the copy states neither
+  Files:     publications/ESCIENCE-2018.pdf
+  Published: Proceedings of the 14th IEEE International Conference on eScience (2018)
+
+INCEpTION - Corpus-based Data Science from Scratch (abstract)
+  Copyright: Richard Eckart de Castilho, Jan-Christoph Klie, Naveen Kumar, Beto Boullosa,
+             Iryna Gurevych; DI4R 2018 published no proceedings
+  Files:     publications/DI4R-2018.pdf
+  Published: Digital Infrastructures for Research (DI4R) 2018
+
+Third-party trademarks
+----------------------
+
+The logos in images/logos, the logos on the posters and flyers in publications, and the brand
+icons in Bootstrap Icons belong to their respective owners and are not covered by the licenses
+above.
